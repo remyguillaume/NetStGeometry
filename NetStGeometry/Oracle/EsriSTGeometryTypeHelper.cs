@@ -1,5 +1,7 @@
 using System;
 using Gry.ArcGis.NetStGeometry.Geometry;
+using Gry.ArcGis.NetStGeometry.Geometry.MultiPart;
+using Gry.ArcGis.NetStGeometry.Geometry.Primitives;
 
 namespace Gry.ArcGis.NetStGeometry.Oracle
 {

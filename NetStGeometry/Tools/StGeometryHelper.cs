@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Gry.ArcGis.NetStGeometry.Geometry;
+using Gry.ArcGis.NetStGeometry.Geometry.Base;
+using Gry.ArcGis.NetStGeometry.Geometry.Primitives;
 
 namespace Gry.ArcGis.NetStGeometry.Tools
 {

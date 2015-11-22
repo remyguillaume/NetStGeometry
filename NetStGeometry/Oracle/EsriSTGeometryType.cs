@@ -1,5 +1,6 @@
 ﻿using System;
 using Gry.ArcGis.NetStGeometry.Geometry;
+using Gry.ArcGis.NetStGeometry.Geometry.Base;
 using Oracle.DataAccess.Types;
 
 namespace Gry.ArcGis.NetStGeometry.Oracle

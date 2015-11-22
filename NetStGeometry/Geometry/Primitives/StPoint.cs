@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Gry.ArcGis.NetStGeometry.Geometry.Base;
 using Gry.ArcGis.NetStGeometry.Tools;
 
-namespace Gry.ArcGis.NetStGeometry.Geometry
+namespace Gry.ArcGis.NetStGeometry.Geometry.Primitives
 {
     /// <summary>
     /// Represents a Point of the Esri ST_Geometry format (in Oracle)

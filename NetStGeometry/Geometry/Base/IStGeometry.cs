@@ -1,4 +1,4 @@
-namespace Gry.ArcGis.NetStGeometry.Geometry
+namespace Gry.ArcGis.NetStGeometry.Geometry.Base
 {
     /// <summary>
     /// Interface representing an Esri ST_Geometry in Oracle

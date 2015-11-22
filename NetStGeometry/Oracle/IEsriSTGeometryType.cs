@@ -1,4 +1,5 @@
 using Gry.ArcGis.NetStGeometry.Geometry;
+using Gry.ArcGis.NetStGeometry.Geometry.Base;
 
 namespace Gry.ArcGis.NetStGeometry.Oracle
 {
