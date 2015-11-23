@@ -7,17 +7,17 @@ namespace Gry.ArcGis.NetStGeometry.Oracle
 {
     /// <summary>
     /// Oracle parameter type representing an Oracle UDT object of type SDE.ST_GEOMETRY, read using SDE.ST_GEOMFROMTEXT() function.
-    /// The is the same as EsrIStGeometryType class, but the when reading with another function, the same type cannot be used for different OracleCustomTypeMapping attributes.
+    /// The is the same as EsriStGeometryType class, but the when reading with another function, the same type cannot be used for different OracleCustomTypeMapping attributes.
     /// Therefore, we have to define a diferent type here.
     /// Will be used when reading an Esri ST_Geometry object in Oracle, only using SDE.ST_GEOMFROMTEXT() function.
     /// </summary>
     [Serializable]
     [OracleCustomTypeMapping("SDE.ST_GEOMFROMTEXT")]
-    public class EsriStGeomFromTextType : OracleCustomTypeBase<EsriStGeomFromTextType>, IEsrIStGeometryType
+    public class EsriStGeomFromTextType : OracleCustomTypeBase<EsriStGeomFromTextType>, IEsriStGeometryType
     {
         private IStGeometry _geometry;
 
-        #region IEsrIStGeometryType Members
+        #region IEsriStGeometryType Members
 
         [OracleObjectMapping("ENTITY")]
         public int Entity { get; set; }

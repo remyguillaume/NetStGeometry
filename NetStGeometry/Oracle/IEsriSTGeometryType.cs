@@ -6,7 +6,7 @@ namespace Gry.ArcGis.NetStGeometry.Oracle
     /// <summary>
     /// Interface representing a Oracle UDT object of type SDE.ST_GEOMETRY.
     /// </summary>
-    public interface IEsrIStGeometryType
+    public interface IEsriStGeometryType
     {
         int Entity { get; set; }
         int NumPts { get; set; }

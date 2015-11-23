@@ -7,7 +7,7 @@ namespace Gry.ArcGis.NetStGeometry.Oracle
 {
     internal static class EsrIStGeometryTypeHelper
     {
-        internal static void MapFromCustomObject(IEsrIStGeometryType geoType)
+        internal static void MapFromCustomObject(IEsriStGeometryType geoType)
         {
             geoType.SetValue("ENTITY", geoType.Entity);
             geoType.SetValue("NUMPTS", geoType.NumPts);
@@ -25,7 +25,7 @@ namespace Gry.ArcGis.NetStGeometry.Oracle
             geoType.SetValue("POINTS", geoType.Points);
         }
 
-        internal static void MapToCustomObject(IEsrIStGeometryType geoType)
+        internal static void MapToCustomObject(IEsriStGeometryType geoType)
         {
             geoType.Entity = geoType.GetValue<int>("ENTITY");
             geoType.NumPts = geoType.GetValue<int>("NUMPTS");
@@ -56,7 +56,7 @@ namespace Gry.ArcGis.NetStGeometry.Oracle
             }
         }
 
-        internal static void CalculateOtherValuesFromGeometry(IEsrIStGeometryType geoType)
+        internal static void CalculateOtherValuesFromGeometry(IEsriStGeometryType geoType)
         {
             if (geoType.Geometry is StPoint)
             {

@@ -55,7 +55,7 @@
     <Compile Include="Oracle\EsriSTGeomFromTextType.cs" />
     <Compile Include="Oracle\EsriSTLineStringType.cs" />
     <Compile Include="Oracle\EsriSTPointType.cs" />
-    <Compile Include="Oracle\IEsriSTGeometryType.cs" />
+    <Compile Include="Oracle\IEsriStGeometryType.cs" />
     <Compile Include="Oracle\OracleCustomTypeBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StParameters.cs" />

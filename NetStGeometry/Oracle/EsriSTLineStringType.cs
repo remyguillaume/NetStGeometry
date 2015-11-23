@@ -7,17 +7,17 @@ namespace Gry.ArcGis.NetStGeometry.Oracle
 {
     /// <summary>
     /// Oracle parameter type representing an Oracle UDT object of type SDE.ST_LINESTRING
-    /// The is the same as EsrIStGeometryType class, but when reading with another function, the same type cannot be used for different OracleCustomTypeMapping attributes.
+    /// The is the same as EsriStGeometryType class, but when reading with another function, the same type cannot be used for different OracleCustomTypeMapping attributes.
     /// Therefore, we have to define a diferent type here.
     /// Will be used when reading an Esri ST_LineString object in Oracle
     /// </summary>
     [Serializable]
     [OracleCustomTypeMapping("SDE.ST_LINESTRING")]
-    public class EsriStLineStringType : OracleCustomTypeBase<EsriStLineStringType>, IEsrIStGeometryType
+    public class EsriStLineStringType : OracleCustomTypeBase<EsriStLineStringType>, IEsriStGeometryType
     {
         private IStGeometry _geometry;
 
-        #region IEsrIStGeometryType Members
+        #region IEsriStGeometryType Members
 
         [OracleObjectMapping("ENTITY")]
         public int Entity { get; set; }
