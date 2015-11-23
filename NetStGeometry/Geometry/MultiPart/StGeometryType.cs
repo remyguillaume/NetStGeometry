@@ -1,4 +1,4 @@
-namespace Gry.ArcGis.NetStGeometry.Geometry
+namespace Gry.ArcGis.NetStGeometry.Geometry.MultiPart
 {
     /// <summary>
     /// Type of Esri ST Geometry

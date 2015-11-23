@@ -1,5 +1,6 @@
 ﻿using System;
 using Gry.ArcGis.NetStGeometry.Geometry;
+using Gry.ArcGis.NetStGeometry.Geometry.Base;
 using Oracle.DataAccess.Types;
 
 namespace Gry.ArcGis.NetStGeometry.Oracle
@@ -10,11 +11,11 @@ namespace Gry.ArcGis.NetStGeometry.Oracle
     /// </summary>
     [Serializable]
     [OracleCustomTypeMapping("SDE.ST_GEOMETRY")]
-    public class EsrIStGeometryType : OracleCustomTypeBase<EsrIStGeometryType>, IEsrIStGeometryType
+    public class EsriStGeometryType : OracleCustomTypeBase<EsriStGeometryType>, IEsriStGeometryType
     {
         private IStGeometry _geometry;
 
-        #region IEsrIStGeometryType Members
+        #region IEsriStGeometryType Members
 
         [OracleObjectMapping("ENTITY")]
         public int Entity { get; set; }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Gry.ArcGis.NetStGeometry.Tools;
 
-namespace Gry.ArcGis.NetStGeometry.Geometry
+namespace Gry.ArcGis.NetStGeometry.Geometry.Primitives
 {
     /// <summary>
     /// Represents a Coordinate (X/Y/Z/M). Will be used for Esri ST Geometries.

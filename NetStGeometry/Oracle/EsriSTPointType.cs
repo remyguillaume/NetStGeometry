@@ -1,22 +1,23 @@
 using System;
 using Gry.ArcGis.NetStGeometry.Geometry;
+using Gry.ArcGis.NetStGeometry.Geometry.Base;
 using Oracle.DataAccess.Types;
 
 namespace Gry.ArcGis.NetStGeometry.Oracle
 {
     /// <summary>
     /// Oracle parameter type representing an Oracle UDT object of type SDE.ST_POINT
-    /// The is the same as EsrIStGeometryType class, but when reading with another function, the same type cannot be used for different OracleCustomTypeMapping attributes.
+    /// The is the same as EsriStGeometryType class, but when reading with another function, the same type cannot be used for different OracleCustomTypeMapping attributes.
     /// Therefore, we have to define a diferent type here.
     /// Will be used when reading an Esri ST_Point object in Oracle
     /// </summary>
     [Serializable]
     [OracleCustomTypeMapping("SDE.ST_POINT")]
-    public class EsriStPointType : OracleCustomTypeBase<EsriStPointType>, IEsrIStGeometryType
+    public class EsriStPointType : OracleCustomTypeBase<EsriStPointType>, IEsriStGeometryType
     {
         private IStGeometry _geometry;
 
-        #region IEsrIStGeometryType Members
+        #region IEsriStGeometryType Members
 
         [OracleObjectMapping("ENTITY")]
         public int Entity { get; set; }

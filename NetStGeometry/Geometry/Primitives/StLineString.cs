@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using Gry.ArcGis.NetStGeometry.Geometry.Base;
 using Gry.ArcGis.NetStGeometry.Tools;
 
-namespace Gry.ArcGis.NetStGeometry.Geometry
+namespace Gry.ArcGis.NetStGeometry.Geometry.Primitives
 {
     /// <summary>
     /// Represents a LineString of the Esri ST_Geometry format (in Oracle)
