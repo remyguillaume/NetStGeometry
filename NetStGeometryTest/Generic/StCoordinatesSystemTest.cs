@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Globalization;
+﻿using System.Globalization;
 using Gry.ArcGis.NetStGeometry;
 using Gry.ArcGis.NetStGeometry.Geometry.Primitives;
 using Gry.ArcGis.NetStGeometry.Oracle;
@@ -7,12 +6,12 @@ using Gry.ArcGis.NetStGeometry.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Oracle.DataAccess.Client;
 
-namespace NetStGeometryTest
+namespace Gry.ArcGis.NetStGeometryTest.Generic
 {
     [TestClass]
     public class StCoordinatesSystemTest
     {
-        private static OracleConnection con;
+        private static OracleConnection _con;
 
         private static StCoordinatesSystem CoordinatesSystem
         {
@@ -24,16 +23,16 @@ namespace NetStGeometryTest
         [ClassInitialize]
         public static void Initialize(TestContext context)
         {
-            con = new OracleConnection(ConfigurationManager.AppSettings["ConnectionString"]);
-            con.Open();
-            StTestHelper.InitializeCoordinatesSystem(con);
+            _con = new OracleConnection(StTestHelper.ConnectionString);
+            _con.Open();
+            StTestHelper.InitializeCoordinatesSystem(_con);
         }
 
         [ClassCleanup]
         public static void Cleanup()
         {
-            con.Close();
-            con.Dispose();
+            _con.Close();
+            _con.Dispose();
         }
 
         #endregion Initialize
@@ -44,11 +43,11 @@ namespace NetStGeometryTest
         [ExpectedException(typeof (OracleException))]
         public void TestCoordSystemLimitMaxXOverflow()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 string wkt = "POINT Z (" + (CoordinatesSystem.MaxX + 1).ToString(CultureInfo.InvariantCulture) + " 0 0)";
                 StTestHelper.Write(wkt);
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
             }
         }
 
@@ -56,11 +55,11 @@ namespace NetStGeometryTest
         [ExpectedException(typeof (OracleException))]
         public void TestCoordSystemLimitMinXOverflow()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 string wkt = "POINT Z (" + (CoordinatesSystem.MinX - 1).ToString(CultureInfo.InvariantCulture) + " 0 0)";
                 StTestHelper.Write(wkt);
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
             }
         }
 
@@ -68,11 +67,11 @@ namespace NetStGeometryTest
         [ExpectedException(typeof (OracleException))]
         public void TestCoordSystemLimitMaxYOverflow()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 string wkt = "POINT Z (0 " + (CoordinatesSystem.MaxY + 1).ToString(CultureInfo.InvariantCulture) + " 0)";
                 StTestHelper.Write(wkt);
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
             }
         }
 
@@ -80,11 +79,11 @@ namespace NetStGeometryTest
         [ExpectedException(typeof (OracleException))]
         public void TestCoordSystemLimitMinYOverflow()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 string wkt = "POINT Z (0 " + (CoordinatesSystem.MinY - 1).ToString(CultureInfo.InvariantCulture) + " 0)";
                 StTestHelper.Write(wkt);
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
             }
         }
 
@@ -92,11 +91,11 @@ namespace NetStGeometryTest
         [ExpectedException(typeof (OracleException))]
         public void TestCoordSystemLimitMaxZOverflow()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 string wkt = "POINT Z (0 0 " + (CoordinatesSystem.MaxZ + 1).ToString(CultureInfo.InvariantCulture) + ")";
                 StTestHelper.Write(wkt);
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
             }
         }
 
@@ -104,11 +103,11 @@ namespace NetStGeometryTest
         [ExpectedException(typeof (OracleException))]
         public void TestCoordSystemLimitMinZOverflow()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 string wkt = "POINT Z (0 0 " + (CoordinatesSystem.MinZ - 1).ToString(CultureInfo.InvariantCulture) + ")";
                 StTestHelper.Write(wkt);
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
             }
         }
 
@@ -119,14 +118,14 @@ namespace NetStGeometryTest
         [TestMethod]
         public void TestCoordSystemLimitMaxX()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 decimal val = CoordinatesSystem.MaxX;
 
                 string wkt = "POINT Z (" + val.ToString("0.####", CultureInfo.InvariantCulture) + " 0 0)";
                 StTestHelper.Write(wkt);
 
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
                 StTestHelper.Write(geo.Points);
                 StTestHelper.Write(geo.Geometry);
 
@@ -151,14 +150,14 @@ namespace NetStGeometryTest
         [TestMethod]
         public void TestCoordSystemLimitMinX()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 decimal val = CoordinatesSystem.MinX;
 
                 string wkt = "POINT Z (" + val.ToString("0.####", CultureInfo.InvariantCulture) + " 0 0)";
                 StTestHelper.Write(wkt);
 
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
                 StTestHelper.Write(geo.Points);
                 StTestHelper.Write(geo.Geometry);
 
@@ -183,14 +182,14 @@ namespace NetStGeometryTest
         [TestMethod]
         public void TestCoordSystemLimitMaxY()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 decimal val = CoordinatesSystem.MaxY;
 
                 string wkt = "POINT Z (0 " + val.ToString("0.####", CultureInfo.InvariantCulture) + " 0)";
                 StTestHelper.Write(wkt);
 
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
                 StTestHelper.Write(geo.Points);
                 StTestHelper.Write(geo.Geometry);
 
@@ -215,14 +214,14 @@ namespace NetStGeometryTest
         [TestMethod]
         public void TestCoordSystemLimitMinY()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 decimal val = CoordinatesSystem.MinY;
 
                 string wkt = "POINT Z (0 " + val.ToString("0.####", CultureInfo.InvariantCulture) + " 0)";
                 StTestHelper.Write(wkt);
 
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
                 StTestHelper.Write(geo.Points);
                 StTestHelper.Write(geo.Geometry);
 
@@ -247,14 +246,14 @@ namespace NetStGeometryTest
         [TestMethod]
         public void TestCoordSystemLimitMaxZ()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 decimal val = CoordinatesSystem.MaxZ;
 
                 string wkt = "POINT Z (0 0 " + val.ToString("0.####", CultureInfo.InvariantCulture) + ")";
                 StTestHelper.Write(wkt);
 
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
                 StTestHelper.Write(geo.Points);
                 StTestHelper.Write(geo.Geometry);
 
@@ -279,14 +278,14 @@ namespace NetStGeometryTest
         [TestMethod]
         public void TestCoordSystemLimitMinZ()
         {
-            using (OracleTransaction tr = con.BeginTransaction())
+            using (OracleTransaction tr = _con.BeginTransaction())
             {
                 decimal val = CoordinatesSystem.MinZ;
 
                 string wkt = "POINT Z (0 0 " + val.ToString("0.####", CultureInfo.InvariantCulture) + ")";
                 StTestHelper.Write(wkt);
 
-                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, con);
+                IEsriStGeometryType geo = StTestHelper.GetGeometry(wkt, _con);
                 StTestHelper.Write(geo.Points);
                 StTestHelper.Write(geo.Geometry);
 

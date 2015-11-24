@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics;
 using Gry.ArcGis.NetStGeometry;
@@ -9,11 +10,16 @@ using Gry.ArcGis.NetStGeometry.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Oracle.DataAccess.Client;
 
-namespace NetStGeometryTest
+namespace Gry.ArcGis.NetStGeometryTest
 {
     public static class StTestHelper
     {
         private static readonly Random Random = new Random(Process.GetCurrentProcess().Id + DateTime.Now.Millisecond);
+
+        public static string ConnectionString
+        {
+            get { return ConfigurationManager.AppSettings["ConnectionString"]; }
+        }
 
         public static IEsriStGeometryType GetGeometry(string geo, OracleConnection con)
         {
